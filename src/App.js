@@ -21,7 +21,7 @@ function App() {
 
   return (
     <AppContainer>
-      <Button onClick={getRepos}>Get Repos</Button>
+      <StyledButton onClick={getRepos}>Get Repos</StyledButton>
       <Header as={HeaderText} fSize="large">
         My Portfolio
       </Header>
@@ -55,6 +55,24 @@ function App() {
     </AppContainer>
   );
 }
+
+const StyledButton = styled.div`
+  display: flex;
+  background: #fff;
+  border: 3px solid aliceblue; 
+  border-radius: 5px; 
+  color: #312d2d;
+  padding: 15px 25px;
+  justify-content: center;
+  transition: background 0.2s ease;
+  cursor: pointer;
+  width: 200px; 
+  
+  &:hover {
+    background: #606060;
+    transition: background 0.2s ease;
+  }
+`;
 
 const rotate360 = keyframes`
   from {
