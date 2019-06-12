@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import HeaderText from "./styles/HeaderText";
 import { Header, Button, Segment, Icon, Card, Grid } from "semantic-ui-react";
 
@@ -33,8 +33,15 @@ function App() {
               <Grid.Column key={r.id} width={4}>
                 <StyledCard>
                   <Card.Content>
-                    <Card.Header>{r.full_name}</Card.Header>
+                    <Truncated>
+                      <Card.Header>{r.full_name}</Card.Header>
+                    </Truncated>
                     <Card.Meta>{r.description}</Card.Meta>
+                    {r.stargazers_count > 0 && (
+                      <Star>
+                        <Icon name="star" />
+                      </Star>
+                    )}
                   </Card.Content>
                 </StyledCard>
               </Grid.Column>
@@ -49,11 +56,27 @@ function App() {
   );
 }
 
+const rotate360 = keyframes`
+  from {
+    tranform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const Star = styled.div`
+  display: inline-block;
+  color: yellow;
+  text-shadow: 1px 1px 1px black;
+  animation: ${rotate360} 2s linear infinite;
+`;
+
 const Truncated = styled.div`
-  width: 250px; 
-  white-space: nowrap; 
-  overflow: hidden; 
-  text-overflow: ellipsis; 
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const StyledCard = styled(Card)`
